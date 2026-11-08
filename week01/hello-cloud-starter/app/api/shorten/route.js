@@ -164,14 +164,11 @@ export async function POST(request) {
       { status: 201 },
     );
   } catch {
-    /*
-     * 7. 서버 내부 오류
-     *
-     * 예상하지 못한 오류가 발생한 경우입니다.
-     *
-     * TODO:
-     * 적절한 HTTP status code로 수정하세요.
-     */
+    console.error(
+      "Failed to save short URL:",
+      error instanceof Error ? error.message : error,
+    );
+
     return NextResponse.json(
       {
         error: {
