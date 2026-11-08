@@ -163,7 +163,7 @@ export async function POST(request) {
       },
       { status: 201 },
     );
-  } catch {
+  } catch (error) {
     console.error(
       "Failed to save short URL:",
       error instanceof Error ? error.message : error,
