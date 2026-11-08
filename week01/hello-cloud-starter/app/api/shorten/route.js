@@ -169,6 +169,18 @@ export async function POST(request) {
       error instanceof Error ? error.message : error,
     );
 
+    if (error?.code === "23505") {
+      return NextResponse.json(
+        {
+          error: {
+            code: "DUPLICATE_URL",
+            message: "이미 단축된 URL입니다.",
+          },
+        },
+        { status: 409 },
+      );
+    }
+
     return NextResponse.json(
       {
         error: {
